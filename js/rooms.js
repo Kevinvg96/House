@@ -50,9 +50,9 @@ const ROOMS = [
     id: "slaapkamer",
     label: "Slaapkamer",
     photos: [
-      { label: "Ouderslaapkamer",     file: "MasterBedroom.jpg" },
-      { label: "Kleinste slaapkamer", file: "KleinsteSlaapKamer.jpg", folder: "kleinste-slaapkamer" },
-      { label: "Extra kamer",         file: "extrakamer.jpg",         folder: "extra-kamer" },
+      { label: "Master Bedroom",     file: "MasterBedroom.jpg" },
+      { label: "Kleinste slaapkamer", file: "KleinsteSlaapKamer.jpg"},
+      { label: "Extra slaapkamer",         file: "extrakamer.jpg"},
     ],
   },
   {
