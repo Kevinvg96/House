@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #17150F;
+  --surface: #201D16;
+  --brass: #C9A227;
+  --sage: #8A9A5B;
+  --cream: #F2EDE4;
+  --cream-dim: #B8B2A4;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+#panorama {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+}
+
+/* --- Top bar --- */
+#topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 28px 32px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(23,21,15,0.85), transparent);
+}
+
+#room-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+#room-count {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-top: 4px;
+}
+
+.nav-arrows {
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.arrow-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(242,237,228,0.25);
+  background: rgba(32,29,22,0.6);
+  color: var(--cream);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.arrow-btn:hover, .arrow-btn:focus-visible {
+  border-color: var(--brass);
+  background: rgba(201,162,39,0.15);
+}
+
+/* --- Angle strip: alternate photos within the current room --- */
+#angle-strip-wrap {
+  position: absolute;
+  bottom: 118px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: none;
+  justify-content: center;
+  pointer-events: none;
+}
+#angle-strip {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+  padding: 6px;
+  background: rgba(32,29,22,0.65);
+  border: 1px solid rgba(242,237,228,0.12);
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+.angle-chip {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cream-dim);
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.angle-chip:hover, .angle-chip:focus-visible {
+  color: var(--cream);
+}
+.angle-chip.active {
+  background: var(--brass);
+  color: var(--bg);
+}
+
+/* --- Door strip (signature element) --- */
+#door-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+  padding: 20px 24px 24px;
+  overflow-x: auto;
+  background: linear-gradient(to top, rgba(23,21,15,0.92), transparent);
+  scrollbar-width: none;
+}
+#door-strip::-webkit-scrollbar { display: none; }
+
+.door {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 78px;
+  padding: 14px 8px 10px;
+  background: var(--surface);
+  border: 1px solid rgba(242,237,228,0.12);
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: var(--cream-dim);
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.door:hover, .door:focus-visible {
+  transform: translateY(-3px);
+  color: var(--cream);
+}
+.door.active {
+  border-color: var(--brass);
+  color: var(--cream);
+  box-shadow: 0 0 0 1px var(--brass) inset;
+}
+.door-num {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  color: var(--brass);
+}
+.door-label {
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* --- Welcome overlay --- */
+#welcome {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #221F17 0%, #17150F 80%);
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+#welcome.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#welcome .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 14px;
+}
+#welcome h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(36px, 7vw, 64px);
+  margin: 0 0 14px;
+}
+#welcome p {
+  color: var(--cream-dim);
+  max-width: 420px;
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+#enter-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--brass);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s;
+}
+#enter-btn:hover { transform: translateY(-1px); background: #dbb436; }
+
+/* --- Missing photo state --- */
+#missing-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+  background: var(--bg);
+}
+#missing-photo .icon {
+  font-size: 32px;
+  color: var(--sage);
+}
+#missing-photo p {
+  color: var(--cream-dim);
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+#missing-photo code {
+  color: var(--brass);
+  background: var(--surface);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  #topbar { padding: 20px 16px; }
+  .door { width: 64px; }
+}
