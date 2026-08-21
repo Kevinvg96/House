@@ -5,9 +5,13 @@
 // EXACTLY, capitalisation included (GitHub Pages is case-sensitive).
 //
 // "photos" lists the file(s) inside that folder. One photo in a
-// room? List one. Multiple angles of the same room? List more — a
+// room? List one. Multiple angles/sub-rooms? List more — a
 // "hoek"-balkje appears automatically above the door strip whenever
-// a room has more than one photo.
+// a room has more than one photo. Each photo normally lives in the
+// room's own folder (matching "id"), but you can add an optional
+// "folder" to a photo to pull it from a different folder instead —
+// handy for grouping several small rooms under one door, like the
+// bedrooms below.
 // -----------------------------------------------------------------
 
 const ROOMS = [
@@ -46,7 +50,9 @@ const ROOMS = [
     id: "slaapkamer",
     label: "Slaapkamer",
     photos: [
-      { label: "Overzicht", file: "MasterBedroom.jpg" },
+      { label: "Ouderslaapkamer",     file: "MasterBedroom.jpg" },
+      { label: "Kleinste slaapkamer", file: "KleinsteSlaapKamer.jpg", folder: "kleinste-slaapkamer" },
+      { label: "Extra kamer",         file: "extrakamer.jpg",         folder: "extra-kamer" },
     ],
   },
   {
@@ -71,21 +77,7 @@ const ROOMS = [
     ],
   },
 
-  // These two didn't have a matching folder in your repo yet — make
-  // a folder in main with the id below, drop the photo in, and
-  // uncomment the block to add it to the tour.
-  // {
-  //   id: "kleinste-slaapkamer",
-  //   label: "Kleinste slaapkamer",
-  //   photos: [
-  //     { label: "Overzicht", file: "KleinsteSlaapKamer.jpg" },
-  //   ],
-  // },
-  // {
-  //   id: "extra-kamer",
-  //   label: "Extra kamer",
-  //   photos: [
-  //     { label: "Overzicht", file: "extrakamer.jpg" },
-  //   ],
-  // },
+  // Note: kleinste-slaapkamer and extra-kamer are folded into the
+  // "slaapkamer" door above as extra photos (with their own
+  // "folder" override) rather than separate doors — see there.
 ];

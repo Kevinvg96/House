@@ -3,7 +3,8 @@ let currentRoomIndex = 0;
 let currentPhotoIndex = 0;
 
 function photoPath(room, photo) {
-  return `${room.id}/${photo.file}`;
+  const folder = photo.folder || room.id;
+  return `${folder}/${photo.file}`;
 }
 
 function loadPhoto(roomIndex, photoIndex) {
