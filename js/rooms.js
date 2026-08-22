@@ -29,6 +29,7 @@ const ROOMS = [
     photos: [
       { label: "Overzicht",  file: "Living1.jpg" },
       { label: "Andere hoek", file: "Living2.jpg" },
+      { label: "Andere Nieuwe Kleur", file: "Woonkamer.png" },
     ],
   },
   {
